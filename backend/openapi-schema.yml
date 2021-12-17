@@ -1,0 +1,11 @@
+info:
+  description: ''
+  title: ''
+  version: ''
+openapi: 3.0.0
+paths:
+  /:
+    get:
+      operationId: list
+servers:
+- url: ''
