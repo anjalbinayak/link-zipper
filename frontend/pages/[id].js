@@ -1,14 +1,36 @@
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
-import Links from "../components/Links";
-
 export default function ZippedLink({ links }) {
+  const openAll = () => {
+    links.map((link) => {
+      window.open(link.link);
+    });
+  };
   return (
-    <div>
-      {links.map((link) => {
-        return <div key={link.link}>{link.link}</div>;
-      })}
-    </div>
+    <>
+      <div className="bg-gray-300 rounded p-10 text-center">
+        <h1 className="text-gray-800">{links.length} link(s)</h1>
+        <button
+          onClick={() => {
+            openAll();
+          }}
+        >
+          Open all
+        </button>
+
+        <div className="w-20 mx-auto ">
+          {links.map((link) => {
+            return (
+              <a
+                className="text-blue-600 block"
+                href={link.link}
+                target="_blank"
+              >
+                {link.link}
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </>
   );
 }
 

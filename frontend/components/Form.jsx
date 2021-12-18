@@ -20,7 +20,8 @@ const Form = () => {
     setLinks(newLinksList);
   }
 
-  async function handleZip() {
+  async function handleZip(e) {
+    e.preventDefault();
     const API_LINK = "http://127.0.0.1:8000/api/zip/";
 
     console.log(links);
@@ -52,7 +53,10 @@ const Form = () => {
 
   return (
     <div className="w-full mx-auto max-w-xs">
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <form
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        onSubmit={(e) => handleZip(e)}
+      >
         {links.map((value, index) => {
           return (
             <LinkInput
@@ -69,9 +73,10 @@ const Form = () => {
 
         <div className="flex items-center justify-between">
           <button
+            type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"
-            onClick={() => handleZip()}
+
+            // onClick={() => handleZip()}
           >
             <FaFileArchive
               style={{ display: "inline-block", verticalAlign: "baseline" }}

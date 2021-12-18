@@ -12,7 +12,7 @@ const LinkInput = ({ index, link, handleChange, handleRemove }) => {
       <input
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         id="link"
-        type="link"
+        type="url"
         placeholder={"Link " + (index + 1)}
         value={link}
         onChange={(e) => handleChange(index, e.target.value)}
