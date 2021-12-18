@@ -11,7 +11,7 @@ def createShortLink(linksList):
     for link in linksList:
         pprint(link)
         createLink(shortLinkObj, link)
-    return True
+    return shortLinkObj.linkId
 
 
 def createLink(ShortLink, link):

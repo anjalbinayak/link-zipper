@@ -14,6 +14,9 @@ from django.core import serializers
 from pprint import pprint
 
 from django.views.decorators.cache import never_cache
+from django.core.cache import cache
+from django.utils.cache import get_cache_key
+
 
 # from rest_framework import permissions
 
@@ -41,7 +44,6 @@ class ShortLinkDetailAPI(generics.RetrieveAPIView):
 
 
 @csrf_exempt
-@never_cache
 def zipLinks(request):
     if request.method != "POST":
         return HttpResponse("Hey Visit us again")
@@ -52,8 +54,12 @@ def zipLinks(request):
     requestBodyProcessed = json.loads(requestBodyRaw)
 
     pprint(requestBodyProcessed)
-    createShortLink(requestBodyProcessed["links"])
-    return HttpResponse(ShortLink.objects.latest("linkId"))
+    linkId = createShortLink(requestBodyProcessed["links"])
+    # key = get_cache_key(request)
+    # if cache.has_key(key):
+    #     print("Cache detected")
+    #     cache.delete(key)
+    return HttpResponse(linkId)
 
 
 @never_cache
